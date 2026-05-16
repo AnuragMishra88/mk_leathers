@@ -1,0 +1,48 @@
+.call-button {
+  position: fixed;
+  bottom: 100px;      /* Above WhatsApp button */
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: #0B014B; /* Navy blue */
+  color: #FFD700;      /* Yellow */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  text-decoration: none;
+  border: 2px solid #FFD700;
+}
+
+.call-button:hover {
+  background: #1a0b6b;
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(11, 1, 75, 0.4);
+  border-color: #FFD700;
+}
+
+.call-icon {
+  font-size: 1.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .call-button {
+    width: 50px;
+    height: 50px;
+    bottom: 80px;      /* Adjusted for smaller screens */
+    right: 20px;
+  }
+  .call-icon {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .call-button {
+    bottom: 80px;
+  }
+}
