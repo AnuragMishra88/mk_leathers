@@ -90,15 +90,26 @@ const Homepage = () => {
   }, [calculateTimeRemaining]);
 
 
-  // Handle email signup
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (email) {
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 3000);
-      setEmail('');
+  // Web3Forms newsletter signup
+  const [result, setResult] = useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+    formData.append("access_key", "d2f3b81e-2baa-432d-94c7-b18eb08c36fe");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      event.target.reset();
+    } else {
+      setResult("Something Went Wrong 🥲");
     }
   };
 
@@ -156,21 +167,15 @@ const Homepage = () => {
           </div>
         </div>
 
-        {/* Newsletter signup */}
+        {/* Newsletter signup - Web3Forms integration */}
         <div className="newsletter">
           <h3>Be the first to experience</h3>
           <p>Get exclusive early access & special offers</p>
-          <form onSubmit={handleSubmit} className="signup-form">
-            <input
-              type="email"
-              placeholder="Your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit" >Notify Me</button>
+          <form onSubmit={onSubmit} className="signup-form">
+            <input type="email" name="email" placeholder="Your email address" required />
+            <button type="submit">Notify Me</button>
           </form>
-          {submitted && <div className="success-message">✓ You're on the list!</div>}
+          {result && <div className="success-message">{result}</div>}
         </div>
 
         {/* Footer note */}
