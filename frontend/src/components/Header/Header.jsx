@@ -74,12 +74,9 @@ const Header = () => {
         <div className="header-right">
           <div className="countdown-badge">
             <span className="badge-icon">⏳</span>
-            <span className="badge-text">{daysLeft} DAYS TO LAUNCH</span>
+            <span className="badge-text">COMING SOON...</span>
           </div>
-          <div className="icon-group">
-            <button className="icon-btn search-icon" aria-label="Search"></button>
-            <button className="icon-btn user-icon" aria-label="Account"></button>
-          </div>
+         
           <button 
             className={`mobile-toggle ${mobileMenuOpen ? 'open' : ''}`} 
             onClick={toggleMobileMenu}
